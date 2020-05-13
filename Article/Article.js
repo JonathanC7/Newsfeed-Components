@@ -85,9 +85,48 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'The New Age',
+    date: 'Jan 19th, 1998',
+    firstParagraph: 'Bruhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
+    secondParagraph: 'Boiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii',
+    thirdParagraph: 'Lorem ipsuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuum'
   }
 ];
 
+  function articleMaker(title, date, oneP, twoP, threeP){
+    const article = document.createElement('div')
+    const articleTitle = document.createElement('h2')
+    const dateP = document.createElement('p')
+    const firstParagraph = document.createElement('p')
+    const secondParagraph = document.createElement('p')
+    const thirdParagraph = document.createElement('p')
+    const btn = document.createElement('span')
+
+    article.appendChild(articleTitle)
+    article.appendChild(dateP)
+    article.appendChild(firstParagraph)
+    article.appendChild(secondParagraph)
+    article.appendChild(thirdParagraph)
+    article.appendChild(btn)
+
+    dateP.classList.add('date')
+    btn.classList.add('expandButton')
+
+    articleTitle.textContent = title
+    dateP.textContent = date
+    firstParagraph.textContent = oneP
+    secondParagraph.textContent = twoP
+    thirdParagraph.textContent = threeP
+
+    return article
+  }
+
+  const articles = document.querySelector('.articles')
+  data.forEach(element => {
+    articles.appendChild(articleMaker(element.title, element.date, element.firstParagraph, element.secondParagraph, element.thirdParagraph))
+  })
 /* Step 1: Write a component called 'articleMaker' to create an article. You want your component to return markup like the template below: 
 
   <div class="article">
@@ -98,7 +137,7 @@ const data = [
 
     <span class='expandButton'></span>
   </div>
-
+  
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as its one argument, or 5 separate arguments mapping to each piece of the data object above.
