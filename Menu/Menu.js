@@ -10,7 +10,7 @@ let menuItems = [
 ];
 
 const menuBtn = document.querySelector('.menu-button')
-
+const header = document.querySelector('.header')
 function menuMaker(items){
   const menu = document.createElement('div')
   const ul = document.createElement('ul')
