@@ -95,38 +95,49 @@ const data = [
   }
 ];
 
-  function articleMaker(title, date, oneP, twoP, threeP){
-    const article = document.createElement('div')
-    const articleTitle = document.createElement('h2')
-    const dateP = document.createElement('p')
-    const firstParagraph = document.createElement('p')
-    const secondParagraph = document.createElement('p')
-    const thirdParagraph = document.createElement('p')
-    const btn = document.createElement('span')
+const articles = document.querySelector('.articles')
 
-    article.appendChild(articleTitle)
-    article.appendChild(dateP)
-    article.appendChild(firstParagraph)
-    article.appendChild(secondParagraph)
-    article.appendChild(thirdParagraph)
-    article.appendChild(btn)
+function articleMaker(obj){
+  const article = document.createElement('div')
+  const articleTitle = document.createElement('h2')
+  const date = document.createElement('p')
+  const firstP = document.createElement('p')
+  const secondP = document.createElement('p')
+  const thirdP = document.createElement('p')
+  const btn = document.createElement('span')
 
-    dateP.classList.add('date')
-    btn.classList.add('expandButton')
+  // Structure
+  article.appendChild(articleTitle)
+  article.appendChild(date)
+  article.appendChild(firstP)
+  article.appendChild(secondP)
+  article.appendChild(thirdP)
+  article.appendChild(btn)
 
-    articleTitle.textContent = title
-    dateP.textContent = date
-    firstParagraph.textContent = oneP
-    secondParagraph.textContent = twoP
-    thirdParagraph.textContent = threeP
+  // Assigning Classes
+  article.classList.add('article')
+  date.classList.add('date')
+  btn.classList.add('expandButton')
 
-    return article
-  }
+  // Filling Content
+  articleTitle.textContent = obj.title
+  date.textContent = obj.date
+  firstP.textContent = obj.firstParagraph
+  secondP.textContent = obj.secondParagraph
+  thirdP.textContent = obj.thirdParagraph
+  btn.textContent = 'Expand/Collapse'
 
-  const articles = document.querySelector('.articles')
-  data.forEach(element => {
-    articles.appendChild(articleMaker(element.title, element.date, element.firstParagraph, element.secondParagraph, element.thirdParagraph))
+  // Event Listeners
+  btn.addEventListener('click', () => {
+    article.classList.toggle('article-open')
   })
+
+  return article
+}
+
+data.forEach((element) => {
+  articles.appendChild(articleMaker(element))
+})
 /* Step 1: Write a component called 'articleMaker' to create an article. You want your component to return markup like the template below: 
 
   <div class="article">
